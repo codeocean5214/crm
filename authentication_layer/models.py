@@ -7,7 +7,7 @@ class User(Base):
     id  = Column(Integer,primary_key=True , index = True)
     username = Column(String,unique=True,index=True)
     email = Column(String,unique=True,index = True)
-    password = Column(String) #iit will sotrwed in the form of hash 
+    password = Column(String,nullable=False) #iit will sotrwed in the form of hash 
 #creating the admin class 
 #for thhe storing data for the admins  
 class Admin(Base) : 

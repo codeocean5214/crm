@@ -3,7 +3,7 @@ from pydantic import BaseModel ,EmailStr, Field
 class UserCreate(BaseModel) : 
     username : str =  Field(...,min_length=3,max_length = 50)
     email : EmailStr #IT ENSURES PROPER EMIAL FORMATTING 
-    password : str = Field(...,min_length=8)
+    password : str = Field(...,max_length= 72 , min_length=8)
 #the user schema for the response model
 class User(BaseModel) : 
     id : int
