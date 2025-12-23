@@ -22,14 +22,14 @@ class DealStage(Enum):
     lost = "lost"
     proposal_sent = "proposal_sent"
     negotiation = "negotiation"
-    prospects = "prospects"
-#this is the guess estimatd of the various stages of the deal being successful 
-deal_proability_mapping = { 
+    prospecting = "prospecting"
+#this is the guess estimated of the various stages of the deal being successful 
+deal_probability_mapping = { 
     DealStage.won: 100,
     DealStage.lost: 0,
     DealStage.proposal_sent: 70,
     DealStage.negotiation: 50,
-    DealStage.prospects: 20
+    DealStage.prospecting: 20
 }
 
 

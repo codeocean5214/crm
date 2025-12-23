@@ -2,8 +2,8 @@
 from sqlalchemy import Column , String , Integer , Enum, DateTime, Float, ForeignKey
 from sqlalchemy.orm import relationship 
 from datetime import datetime
-from database import Base
-from constants import LeadStatus, ContactMethod, DealStage
+from .database import Base
+from .constants import LeadStatus, ContactMethod, DealStage
 class Lead(Base): 
     __tablename__ = "leads"
     id = Column(Integer,primary_key= True, index = True)
