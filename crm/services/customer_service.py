@@ -1,7 +1,7 @@
 from fastapi import HTTPException 
 from crm.models import Customer 
 from sqlalchemy.orm import Session 
-from  ..constants import LeadStatus 
+from  crm.constants import LeadStatus 
 
 class  Customer_Service : 
     def convert_from_lead(self,db:Session,lead) : 

@@ -19,4 +19,5 @@ class TaskService :
 
         return self.repo.create(db, task)
     
-    
+    def get_my_pending_tasks(self, db, admin_id: int):
+        return self.repo.get_pending_by_user(db, admin_id)

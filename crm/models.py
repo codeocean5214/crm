@@ -12,7 +12,7 @@ class Lead(Base):
     phone_number = Column(String,unique=True , index = True)
     status  = Column(Enum(LeadStatus),default=LeadStatus.new)
     contact_method = Column(Enum(ContactMethod),nullable= False) # this will store the preferred contact method and cannot be null 
-    owner_id = Column(Integer, ForeignKey("admins.id"))
+    ownfer_id = Column(Integer, ForeignKey("admins.id"))
     created_at = Column(DateTime,default= datetime.utcnow)
     owner = relationship("Admin", back_populates="leads")
 

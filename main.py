@@ -6,10 +6,18 @@ from authentication_layer import auth,schemas,database,models
 from authentication_layer.database import get_db , engine
 import uvicorn as uv 
 import logging 
+from crm.api.leads import router as lead_router 
+from crm.api.customer import router as customer_router
+from crm.api.deals import router as deal_router
+from crm.api.task import router as task_router
 #crete the database tables and getting the database engine  
 models.Base.metadata.create_all(bind = engine )
 app = FastAPI()
 oauth_scheme = OAuth2PasswordBearer(tokenUrl="token")
+app.include_router(lead_router)
+app.include_router(customer_router)
+app.include_router(deal_router)
+app.include_router(task_router)
 #writting the api end  point 
 #new user registration endpoint
 @app.post("/register",response_model = schemas.User)
@@ -138,6 +146,9 @@ async def  get_current_admin(token: str = Depends(oauth_scheme), db: Session = D
 @app.get("/admin/me", response_model = schemas.Admin)
 def read_admins_me(current_admins: schemas.Admin = Depends(get_current_admin)): #first we are verifying the token and then getting the current admin thas all 
     return current_admins
+
+
+
 if __name__ == "__main__" : 
     uv.run(app, host="127.0.0.1", port=8000)
 #uvicorn main:app --reload
