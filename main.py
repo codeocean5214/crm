@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session 
 from authentication_layer import auth,schemas,database,models
 from authentication_layer.database import get_db , engine
+from authentication_layer.dependcies import get_current_admin
 import uvicorn as uv 
 import logging 
 from crm.api.leads import router as lead_router 
@@ -131,7 +132,7 @@ def login_for_access_token(form_data : OAuth2PasswordRequestForm  = Depends(),db
         print("Error : ",e)
         raise HTTPException(status_code=500,detail="Internal server error")
     return {"access_token": access_token  , "token_type":"bearer"}
-async def  get_current_admin(token: str = Depends(oauth_scheme), db: Session = Depends(get_db)):
+"""async def  get_current_admin(token: str = Depends(oauth_scheme), db: Session = Depends(get_db)):
     username = auth.verify_token(token)
     if username is None:
         raise HTTPException(
@@ -142,7 +143,7 @@ async def  get_current_admin(token: str = Depends(oauth_scheme), db: Session = D
     admin = db.query(models.Admin).filter(models.Admin.admin_name == username).first()
     if admin is None:
         raise HTTPException(status_code=404, detail="Admin not found")
-    return admin
+    return admin"""
 @app.get("/admin/me", response_model = schemas.Admin)
 def read_admins_me(current_admins: schemas.Admin = Depends(get_current_admin)): #first we are verifying the token and then getting the current admin thas all 
     return current_admins

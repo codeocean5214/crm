@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from crm.services.lead_service import LeadService 
 from crm.services.customer_service import Customer_Service
 from authentication_layer.database import get_db 
-from main import get_current_admin 
+from authentication_layer.dependcies import get_current_admin 
 
 router =  APIRouter( prefix="/customer",tags=['customer']) 
 customer_service= Customer_Service ()

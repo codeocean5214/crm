@@ -1,5 +1,5 @@
 from pydantic import BaseModel ,EmailStr, Field
-from constants import LeadStatus,ContactMethod, DealStage
+from crm.constants import LeadStatus,ContactMethod, DealStage
 from datetime import datetime
 from typing import Optional #null values ke liye
 

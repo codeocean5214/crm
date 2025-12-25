@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from crm.schemas import DealCreate,Dealsupdate 
 from crm.services.deal_service  import DealServices  
-from main import get_current_admin 
+from authentication_layer.dependcies import get_current_admin 
 from authentication_layer.database import get_db 
 
 router = APIRouter(prefix="/deals",tags = ["Deals"])

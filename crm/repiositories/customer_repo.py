@@ -1,7 +1,7 @@
 #repositries are written are for the purpose of interacting with the database, we could 
 # used normal functions bto access db featues in the  main but repo proivdes more decentralisation
 from sqlalchemy.orm import Session  
-from ..models import Customer 
+from crm.models import Customer  
 
 class CustomerRepo : 
 
