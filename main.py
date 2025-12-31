@@ -11,6 +11,7 @@ from crm.api.leads import router as lead_router
 from crm.api.customer import router as customer_router
 from crm.api.deals import router as deal_router
 from crm.api.task import router as task_router
+from crm.redis_client import redis_client 
 #crete the database tables and getting the database engine  
 models.Base.metadata.create_all(bind = engine )
 app = FastAPI()
@@ -148,7 +149,9 @@ def login_for_access_token(form_data : OAuth2PasswordRequestForm  = Depends(),db
 def read_admins_me(current_admins: schemas.Admin = Depends(get_current_admin)): #first we are verifying the token and then getting the current admin thas all 
     return current_admins
 
-
+@app.on_event("shutdown")
+def shutdown(): 
+    redis_client.close() 
 
 if __name__ == "__main__" : 
     uv.run(app, host="127.0.0.1", port=8000)
